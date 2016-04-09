@@ -113,9 +113,16 @@ if test -z "$GPG_AGENT_INFO"
   pgrep -U (id -u) "gpg-agent" | while read --local line
     kill "$line"
   end
-  command -v gpg-agent >/dev/null 2>&1 \
-    ; and gpg-agent --daemon --sh --default-cache-ttl 7200 > "$__gpg_agent_info_file"
-  set --export --global GPG_AGENT_INFO (__get_gpg_agent_info "$__gpg_agent_info_file")
+  set --local __gpg_agent_info (gpg-agent --daemon --sh --default-cache-ttl 7200)
+  if test -z "$__gpg_agent_info"
+    if test -S "$HOME/.gnupg/S.gpg-agent"
+      set __gpg_agent_info "$HOME/.gnupg/S.gpg-agent"
+    end
+  end
+  if test -n "$__gpg_agent_info"
+    echo -n "$__gpg_agent_info" > "$__gpg_agent_info_file"
+    set --export --global GPG_AGENT_INFO "$__gpg_agent_info"
+  end
 end
 
 set --erase __gpg_agent_info_file
