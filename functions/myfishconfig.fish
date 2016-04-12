@@ -129,3 +129,15 @@ set --erase __gpg_agent_info_file
 functions --erase __get_gpg_agent_sock
 functions --erase __get_gpg_agent_info
 # }}}
+
+# pyenv {{{
+if test -d "$HOME/.pyenv"
+  set --export PYENV_ROOT $HOME/.pyenv
+  if test -d "$PYENV_ROOT/bin"
+    set --export PATH $PYENV_ROOT/bin $PATH
+end
+end
+if command -v pyenv >/dev/null 2>&1
+  status --is-interactive; and . (pyenv init - | psub)
+end
+# }}}
