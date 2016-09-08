@@ -56,12 +56,12 @@ test -d "$HOME/Library/Android/sdk"; \
 # Java {{{
 test -d /usr/lib/jvm/java-7-oraclea; \
     and set -x JAVA7_HOME /usr/lib/jvm/java-7-oracle
-test -d "/Library/Java/JavaVirtualMachines/jdk1.7"*".jdk/Contents/Home"; \
-    and set -x JAVA7_HOME (echo "/Library/Java/JavaVirtualMachines/jdk1.7"*".jdk/Contents/Home")
+test -x "/usr/libexec/java_home"; and /usr/libexec/java_home -v 1.7 > /dev/null 2>&1;
+    and set -x JAVA7_HOME (/usr/libexec/java_home -v 1.7)
 test -d /usr/lib/jvm/java-8-oracle; \
     and set -x JAVA8_HOME /usr/lib/jvm/java-8-oracle
-test -d "/Library/Java/JavaVirtualMachines/jdk1.8"*".jdk/Contents/Home"; \
-    and set -x JAVA8_HOME (echo "/Library/Java/JavaVirtualMachines/jdk1.8"*".jdk/Contents/Home")
+test -x "/usr/libexec/java_home"; and /usr/libexec/java_home -v 1.8 > /dev/null 2>&1;
+    and set -x JAVA8_HOME (/usr/libexec/java_home -v 1.8)
 if [ "$JAVA8_HOME" ]
     set -gx JAVA_HOME "$JAVA8_HOME"
 else if [ "$JAVA7_HOME" ]
