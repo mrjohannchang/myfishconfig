@@ -129,4 +129,8 @@ end
 set --erase __gpg_agent_info_file
 functions --erase __get_gpg_agent_sock
 functions --erase __get_gpg_agent_info
+
+if set -q SSH_TTY
+  set --export --global GPG_TTY (tty)
+end
 # }}}
