@@ -8,6 +8,10 @@ test -d "$HOME/.pyenv"; and set -x PATH "$HOME/.pyenv/bin" $PATH
 test -d "$HOME/.rvm/bin"; and set -x PATH "$HOME/.rvm/bin" $PATH
 # }}}
 
+# Darwin {{{
+test -d "$HOME/bin/darwin"; and set -x PATH "$HOME/bin/darwin" $PATH
+# }}}
+
 # Color {{{
 if begin echo "$COLORTERM" | grep -q "^gnome-"; and [ "$TERM" = xterm ]; \
         and infocmp gnome-256color >/dev/null 2>&1; end
