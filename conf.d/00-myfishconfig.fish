@@ -34,9 +34,9 @@ end
 # }}}
 
 # Go {{{
-set -x GOPATH "$HOME/.go"
+set -x GOPATH "$HOME/go"
 set -x GOBIN "$GOPATH/bin"
-test -d "$GOBIN"; and set -x PATH "$GOBIN" $PATH
+test -d "$GOBIN"; and set -x PATH $PATH "$GOBIN"
 # }}}
 
 # Darwin specific tweaks {{{
