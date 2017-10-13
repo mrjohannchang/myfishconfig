@@ -24,7 +24,7 @@ end
 # Functions {{{
 function l; tree --dirsfirst -aFCNL 1 $argv; end
 function ll; tree --dirsfirst -ChFupDaLg 1 $argv; end
-function mkdircd; mkdir -p "$argv[1..-1]"; and cd "$argv[1..-1]"; end
+function take; mkdir -p "$argv[1..-1]"; and cd "$argv[1..-1]"; end
 # }}}
 
 # Tmux {{{
